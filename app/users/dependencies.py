@@ -29,7 +29,7 @@ async def get_current_user(token: str = Depends(get_token)):
     user_id: str = payload.get("sub")
     if not user_id:
         raise UserIsNotPresentException
-    user = await Users_Data_Access_Object.find_by_id(int(user_id))
+    user = await Users_Data_Access_Object.select_one_or_none_filter_by(id=int(user_id))
     if not user:
         raise UserIsNotPresentException
 

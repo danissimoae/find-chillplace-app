@@ -20,7 +20,7 @@ class RoomsDAO(Base_Data_Access_Object):
         for room in rooms:
             rooms_qty = room.quantity
             rooms_booked: int = len(
-                await Booking_Data_Access_Object.get_booking_rooms_by_id(room.id, date_from, date_to)
+                await Booking_Data_Access_Object.get_booking_for_user(room.id, date_from, date_to)
             )
             rooms_left: int = int(rooms_qty) - int(rooms_booked)
             if rooms_left:
